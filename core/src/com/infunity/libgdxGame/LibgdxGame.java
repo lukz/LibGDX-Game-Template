@@ -1,27 +1,41 @@
 package com.infunity.libgdxGame;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.FPSLogger;
+import com.infunity.libgdxGame.model.Assets;
+import com.infunity.libgdxGame.screens.LoadingScreen;
 
-public class LibgdxGame extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	
-	@Override
-	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
-	}
+public class LibgdxGame extends Game {
 
-	@Override
-	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
-	}
+    public static final boolean DEBUG = true;
+    public static final float TARGET_WIDTH = 1024;
+    public static final float TARGET_HEIGHT = 576;
+
+    public static Assets assets;
+
+    private FPSLogger log;
+
+    public LibgdxGame() {
+        this.log = new FPSLogger();
+    }
+
+    @Override
+    public void create () {
+        assets = new Assets();
+        log = new FPSLogger();
+
+        this.setScreen(new LoadingScreen(this));
+    }
+
+    @Override
+    public void render () {
+        super.render();
+        log.log();
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        assets.dispose();
+    }
 }
