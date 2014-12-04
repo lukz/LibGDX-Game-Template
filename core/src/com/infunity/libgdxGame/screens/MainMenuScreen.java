@@ -25,6 +25,8 @@ public class MainMenuScreen implements Screen {
     @Override
     public void show() {
 
+        // Just because we usually don't start making a game with menu
+        game.setScreen(new GameScreen(game));
     }
 
     @Override

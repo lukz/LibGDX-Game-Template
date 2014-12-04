@@ -46,7 +46,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
-
+        System.out.println("I'm here!");
     }
 
     @Override
