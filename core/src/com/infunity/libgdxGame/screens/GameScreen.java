@@ -40,6 +40,7 @@ public class GameScreen implements Screen {
 
         Map map = new TestMap(box2DWorld);
         this.world = new GameWorld(box2DWorld, map);
+        this.render = new WorldRenderer(world);
 
         Gdx.input.setInputProcessor(new DefaultInputHandler(game));
     }
